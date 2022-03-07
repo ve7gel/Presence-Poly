@@ -82,6 +82,8 @@ class Controller(udi_interface.Node):
                 netip = val.replace('.', '')
                 self.poly.addNode(NetworkNode(self.poly, self.address, netip, val, key))
 
+        self.configured = True
+
     def update(self):
         pass
 
