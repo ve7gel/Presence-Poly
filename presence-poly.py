@@ -33,7 +33,7 @@ class Controller(udi_interface.Node):
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
         self.poly.subscribe(self.poly.LOGLEVEL, self.handleLevelChange)
-        self.poly.subscribe(self.poly.CUSTOMNS, self.customns)
+        self.poly.subscribe(self.poly.CONFIG, self.customns)
 
         self.poly.subscribe(self.poly.STOP, self.stop_handler)
         # self.poly.subscribe(self.poly.ADDNODEDONE, self.node_queue)
