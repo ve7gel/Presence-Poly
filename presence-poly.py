@@ -93,7 +93,7 @@ class Controller(udi_interface.Node):
         pass
 
     def config(self, data):
-        LOGGER.debug(f'Config: {data["shortPoll"]}')
+        LOGGER.debug(f'NODESERVER Config: {data.get.shortPoll}')
 
     def handleLevelChange(self, level):
         LOGGER.info('New log level: {}'.format(level))
