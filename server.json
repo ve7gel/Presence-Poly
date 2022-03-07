@@ -6,7 +6,7 @@
     "install": "install.sh",
     "description": "A Polyglot Nodeserver to monitor proximity of devices for indoor positioning/presence",
     "notice": "The code here is provided as is, without guarantee, and shall not be used with illegal purposes",
-    "shortPoll": "5",
+    "shortPoll": "30",
     "longPoll": "60",
     "credits": [
         {
