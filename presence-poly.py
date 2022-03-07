@@ -69,10 +69,10 @@ class Controller(udi_interface.Node):
             self.poly.nodes[node].reportDrivers()
 
     def discover(self):
-        #self.Parameters.load(parameters)
+        # self.Parameters.load(parameters)
         # Discover nodes and add them by type
         LOGGER.debug(f'Parameters: {self.Parameters}')
-        for key, val in self.Parameters['customParams'].items():
+        for key, val in self.Parameters.items():
             LOGGER.debug(key + " => " + val)
             if val.find(':') != -1:
                 blueid = val.replace(':', '').lower()
