@@ -42,7 +42,7 @@ class Controller(udi_interface.Node):
 
     def start(self):
         LOGGER.info('Presence Controller started.')
-        self.discover()
+        # self.discover()
         self.setDriver('ST', 1)
 
     def poll(self, polltype):
