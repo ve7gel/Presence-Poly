@@ -271,7 +271,6 @@ class NetworkNode(udi_interface.Node):
 
     def update(self):
         if self.scan:
-            LOGGER.debug(f"Timeout: {self.primary.polyConfig['shortPoll']}")
             # onnet = PingHelper(ip=self.ip, timeout=self.primary.polyConfig['shortPoll'])
             onnet = PingHelper(ip=self.ip, timeout=15)
             result = onnet.ping()
