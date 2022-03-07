@@ -1,2 +1,2 @@
-polyinterface>=2.0.0
-pybluez
+udi-interface>=3.0.36
+Bluetooth_Connect>=0.1
