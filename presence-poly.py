@@ -54,9 +54,10 @@ class Controller(udi_interface.Node):
 
     def shortPoll(self):
         # This is where the updates to each node happen
-        for node in self.poly.nodes:
-            LOGGER.debug(f'self.poly.nodes: {self.poly.nodes}')
-            self.poly.nodes[node].update()
+        LOGGER.debug(f'self.poly.nodes: {self.poly.getNodes}')
+
+        for node in self.poly.getNodes:
+            node.update()
         if self.firstRun:
             self.query()
             self.firstRun = False
