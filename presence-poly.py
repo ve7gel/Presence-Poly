@@ -33,7 +33,7 @@ class Controller(udi_interface.Node):
         self.poly.subscribe(self.poly.START, self.start, address)
         self.poly.subscribe(self.poly.POLL, self.poll)
         self.poly.subscribe(self.poly.LOGLEVEL, self.handleLevelChange)
-        self.poly.subscribe(self.poly.CONFIG, self.customns)
+        self.poly.subscribe(self.poly.CONFIG, self.config)
 
         self.poly.subscribe(self.poly.STOP, self.stop_handler)
         # self.poly.subscribe(self.poly.ADDNODEDONE, self.node_queue)
@@ -92,8 +92,8 @@ class Controller(udi_interface.Node):
     def update(self):
         pass
 
-    def customns(self, data):
-        LOGGER.debug(f'CUSTOMNS: {data}')
+    def config(self, data):
+        LOGGER.debug(f'Config: {data["shortPOll"]}')
 
     def handleLevelChange(self, level):
         LOGGER.info('New log level: {}'.format(level))
