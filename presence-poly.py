@@ -70,8 +70,7 @@ class Controller(udi_interface.Node):
         pass
 
     def query(self):
-        nodes = self.poly.getNodes()
-        for node in nodes:
+        for node in self.poly.nodes():
             node.reportDrivers()
 
     def discover(self):
