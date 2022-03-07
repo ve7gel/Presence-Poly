@@ -103,6 +103,7 @@ class Controller(udi_interface.Node):
     def stop_handler(self):
         self.setDriver('ST', 0)
         LOGGER.debug('Presence Controller stopped.')
+        self.poly.stop()
 
     def check_params(self, config):
         self.Parameters.load(config)
