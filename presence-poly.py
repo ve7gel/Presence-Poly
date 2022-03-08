@@ -260,8 +260,8 @@ class PingHelper(object):
 
     def ping(self):
         try:
-            LOGGER.debug(f'Trying {type(self.ip)} with timeout {self.timeout}')
-            response = os.system("ping -c 1 -W " + str(self.timeout - 1) + " " + self.ip)
+            LOGGER.debug(f'Trying {self.ip} with timeout {self.timeout}')
+            response = os.system("ping -c 1 -W " + str(self.timeout - 1) + " " + self.ip + " > /dev/null 2>&1")
             LOGGER.debug(f'Ping response {response}')
 
             if response == 0:
