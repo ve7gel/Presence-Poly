@@ -13,7 +13,7 @@ class PingHelper(object):
 
     def ping(self):
         try:
-            LOGGER.info(f'Trying {self.host} with timeout {self.timeout}')
+            LOGGER.debug(f'Trying {self.host} with timeout {self.timeout}')
             response = sp.call(['/sbin/ping', '-c1', '-W' + self.timeout, self.host], shell=False)
             LOGGER.debug(f'Ping response {response}')
 
@@ -45,16 +45,16 @@ class NetworkNode(udi_interface.Node):
             result = onnet.ping()
 
             if result is not None:
-                LOGGER.debug('Network ' + self.ip + ': On Network')
+                LOGGER.info('Network ' + self.ip + ': On Network')
                 self.setOnNetwork(5)
             elif self.strength > 1:
                 self.setOnNetwork(self.strength - 1)
-                LOGGER.debug('Network ' + self.ip + ': In Fault')
+                LOGGER.info('Network ' + self.ip + ': In Fault')
             elif self.strength == 1:
-                LOGGER.debug('Network ' + self.ip + ': Out of Network')
+                LOGGER.info('Network ' + self.ip + ': Out of Network')
                 self.setOffNetwork()
             else:
-                LOGGER.warning('Invalid response received from Ping')
+                LOGGER.warning(f'Invalid response received from Ping: {result}')
         return
 
     def setOnNetwork(self, strength):
