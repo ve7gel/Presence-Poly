@@ -78,6 +78,14 @@ class Controller(udi_interface.Node):
         for node in self.poly.nodes():
             node.reportDrivers()
 
+    def check_params(self, config):
+        self.Parameters.load(config)
+        LOGGER.debug(f'Loading Parameters: {self.Parameters}')
+        # Remove all existing notices
+        self.discover()
+
+        self.Notices.clear()
+
     def discover(self):
         # self.Parameters.load(parameters)
         # Discover nodes and add them by type
@@ -99,8 +107,6 @@ class Controller(udi_interface.Node):
     def configHandler(self, data):
         LOGGER.debug(f"NODESERVER Config: {data['shortPoll']}")
         self.shortpoll_time = data['shortPoll']
-        self.discover()
-
 
     def handleLevelChange(self, level):
         LOGGER.info('New log level: {}'.format(level))
@@ -112,11 +118,6 @@ class Controller(udi_interface.Node):
         self.setDriver('ST', 0)
         LOGGER.debug('Presence Controller stopped.')
         self.poly.stop()
-
-    def check_params(self, config):
-        self.Parameters.load(config)
-        # Remove all existing notices
-        self.Notices.clear()
 
     def update_profile(self, command):
         LOGGER.info('update_profile:')
