@@ -257,7 +257,7 @@ class PingHelper(object):
 
     def __init__(self, ip, timeout):
         self.host = ip
-        self.timeout = int(timeout)
+        self.timeout = str(timeout)
 
     def ping(self):
         try:
