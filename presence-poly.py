@@ -67,6 +67,8 @@ class Controller(udi_interface.Node):
                 LOGGER.debug(f'Polling, node.address={node.address} node.name={node.name}')
                 node.update()
 
+        LOGGER.debug('Polling done!')
+
     def longPoll(self):
         # Not used
         pass
