@@ -262,7 +262,7 @@ class PingHelper(object):
     def ping(self):
         try:
             LOGGER.debug(f'Trying {self.host} with timeout {self.timeout}')
-            response, result = sp.getstatusoutput("ping -c1 -W" + self.timeout + " " + self.host)
+            response = sp.call(['/sbin/ping', '-c1', '-W' + self.timeout, self.host], shell=False)
             LOGGER.debug(f'Ping response {response}')
 
             if response == 0:
