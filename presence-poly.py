@@ -298,6 +298,7 @@ class NetworkNode(udi_interface.Node):
                 self.setOffNetwork()
             else:
                 LOGGER.debug('Invalid response received from Ping')
+        return
 
     def setOnNetwork(self, strength):
         self.setDriver('ST', 1)
