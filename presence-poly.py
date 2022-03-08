@@ -277,8 +277,8 @@ class NetworkNode(udi_interface.Node):
 
     def update(self):
         if self.scan:
-            onnet = PingHelper(ip=self.ip, timeout=self.primary.shortpoll_time)
-            #onnet = PingHelper(ip=self.ip, timeout=15)
+            #onnet = PingHelper(ip=self.ip, timeout=self.primary.shortpoll_time)
+            onnet = PingHelper(ip=self.ip, timeout=15)
             result = onnet.ping()
             if result is not None:
                 LOGGER.debug('Network ' + self.ip + ': On Network')
