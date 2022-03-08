@@ -1,6 +1,6 @@
 # presence_controller
-ND-presence_controller-NAME = Presence Controller
-ND-presence_controller-ICON = GenericCtl
+ND-presence-NAME = Presence Controller
+ND-presence-ICON = GenericCtl
 CMD-ctl-DISCOVER-NAME = Discover
 CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 ST-ctl-ST-NAME = Presence Controller Online
