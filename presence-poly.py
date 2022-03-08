@@ -14,12 +14,10 @@ Custom = udi_interface.Custom
 
 
 class Controller(udi_interface.Node):
-    id = 'presence_controller'
+    id = 'presence'
 
     def __init__(self, polyglot, parent, address, name):
         super(Controller, self).__init__(polyglot, parent, address, name)
-        self.name = 'Presence Controller'
-        self.firstRun = True
         self.poly = polyglot
         self.name = name
         self.address = address
@@ -58,19 +56,12 @@ class Controller(udi_interface.Node):
 
     def short_Poll(self):
         # This is where the updates to each node happen
-
-        # if self.firstRun:
-        #     self.query()
-        #     self.firstRun = False
-
         for node_address in self.poly.getNodes():
             node = self.poly.getNode(node_address)
 
             if node.name != 'presence':
                 LOGGER.debug(f'Polling, node.address={node.address} node.name={node.name}')
                 node.update()
-
-        LOGGER.debug('Polling done!')
 
     def longPoll(self):
         # Not used
@@ -262,7 +253,7 @@ class PingHelper(object):
 
     def ping(self):
         try:
-            LOGGER.debug(f'Trying {self.host} with timeout {self.timeout}')
+            LOGGER.info(f'Trying {self.host} with timeout {self.timeout}')
             response = sp.call(['/sbin/ping', '-c1', '-W' + self.timeout, self.host], shell=False)
             LOGGER.debug(f'Ping response {response}')
 
@@ -289,10 +280,9 @@ class NetworkNode(udi_interface.Node):
 
     def update(self):
         if self.scan:
-            # onnet = PingHelper(ip=self.ip, timeout=self.primary.shortpoll_time)
+
             onnet = PingHelper(ip=self.ip, timeout=15)
             result = onnet.ping()
-            LOGGER.debug(f'Ping response {result}')
 
             if result is not None:
                 LOGGER.debug('Network ' + self.ip + ': On Network')
@@ -304,7 +294,7 @@ class NetworkNode(udi_interface.Node):
                 LOGGER.debug('Network ' + self.ip + ': Out of Network')
                 self.setOffNetwork()
             else:
-                LOGGER.debug('Invalid response received from Ping')
+                LOGGER.warning('Invalid response received from Ping')
         return
 
     def setOnNetwork(self, strength):
