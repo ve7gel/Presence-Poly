@@ -44,7 +44,7 @@ class Controller(udi_interface.Node):
 
     def start(self):
         LOGGER.info('Presence Controller started.')
-        # self.discover()
+        self.query()
         self.setDriver('ST', 1)
 
     def poll(self, polltype):
@@ -58,9 +58,9 @@ class Controller(udi_interface.Node):
     def short_Poll(self):
         # This is where the updates to each node happen
 
-        if self.firstRun:
-            self.query()
-            self.firstRun = False
+        # if self.firstRun:
+        #     self.query()
+        #     self.firstRun = False
 
         for node_address in self.poly.getNodes():
             node = self.poly.getNode(node_address)
