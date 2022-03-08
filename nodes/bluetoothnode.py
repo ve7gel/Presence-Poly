@@ -1,3 +1,8 @@
+import array
+import fcntl
+import struct
+
+import pyblue as bt
 import udi_interface
 
 LOGGER = udi_interface.LOGGER
@@ -12,7 +17,7 @@ class BlueHelper(object):
 
         self.hci_sock = bt.hci_open_dev()
         self.hci_fd = self.hci_sock.fileno()
-        self.bt_sock = bluetooth.BluetoothSocket(bluetooth.L2CAP)
+        self.bt_sock = bt.BluetoothSocket(bluetooth.L2CAP)
         self.bt_sock.settimeout(10)
         self.connected = False
         self.cmd_pkt = None

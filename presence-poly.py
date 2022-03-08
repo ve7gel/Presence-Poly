@@ -11,7 +11,7 @@ if __name__ == "__main__":
     try:
         polyglot = udi_interface.Interface([])
         polyglot.start()
-        control = presence_ctl.Controller(polyglot, 'controller', 'controller', 'presence')
+        control = presence_ctl.Controller(polyglot, 'controller', 'controller', 'Presence')
         polyglot.runForever()
 
     except (KeyboardInterrupt, SystemExit):
