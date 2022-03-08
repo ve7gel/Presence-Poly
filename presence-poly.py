@@ -24,6 +24,7 @@ class Controller(udi_interface.Node):
         self.address = address
         self.primary = parent
         self.configured = False
+        self.shortpoll_time = 30
 
         self.Parameters = Custom(polyglot, 'customparams')
         self.Notices = Custom(polyglot, 'notices')
@@ -93,6 +94,7 @@ class Controller(udi_interface.Node):
 
     def configHandler(self, data):
         LOGGER.debug(f"NODESERVER Config: {data['shortPoll']}")
+        self.shortpoll_time = data['shortPoll']
 
     def handleLevelChange(self, level):
         LOGGER.info('New log level: {}'.format(level))
@@ -275,8 +277,8 @@ class NetworkNode(udi_interface.Node):
 
     def update(self):
         if self.scan:
-            # onnet = PingHelper(ip=self.ip, timeout=self.primary.polyConfig['shortPoll'])
-            onnet = PingHelper(ip=self.ip, timeout=15)
+            onnet = PingHelper(ip=self.ip, timeout=self.primary.shortpoll_time)
+            #onnet = PingHelper(ip=self.ip, timeout=15)
             result = onnet.ping()
             if result is not None:
                 LOGGER.debug('Network ' + self.ip + ': On Network')
