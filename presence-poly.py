@@ -52,9 +52,9 @@ class Controller(udi_interface.Node):
             return
         LOGGER.debug('In shortpoll')
         if 'shortPoll' in polltype:
-            self.shortPoll()
+            self.short_Poll()
 
-    def shortPoll(self):
+    def short_Poll(self):
         # This is where the updates to each node happen
 
         if self.firstRun:
