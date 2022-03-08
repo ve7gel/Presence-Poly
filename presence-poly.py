@@ -7,6 +7,7 @@ import struct
 import array
 import fcntl
 import os
+import subprocess as sp
 
 LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
@@ -255,13 +256,13 @@ class BluetoothNode(udi_interface.Node):
 class PingHelper(object):
 
     def __init__(self, ip, timeout):
-        self.ip = ip
+        self.host = ip
         self.timeout = timeout
 
     def ping(self):
         try:
-            LOGGER.debug(f'Trying {self.ip} with timeout {self.timeout}')
-            response = os.system("ping -c 1 -W " + str(self.timeout - 1) + " " + self.ip + " > /dev/null 2>&1")
+            LOGGER.debug(f'Trying {self.host} with timeout {self.timeout}')
+            response, result = sp.getstatusoutput("ping -c1 -W" + self.timeout + " " + self.host)
             LOGGER.debug(f'Ping response {response}')
 
             if response == 0:
