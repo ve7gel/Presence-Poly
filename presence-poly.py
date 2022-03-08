@@ -50,6 +50,7 @@ class Controller(udi_interface.Node):
 
         if not self.configured:
             return
+        LOGGER.debug('In shortpoll')
         if 'shortPoll' in polltype:
             self.shortPoll()
 
@@ -98,6 +99,8 @@ class Controller(udi_interface.Node):
     def configHandler(self, data):
         LOGGER.debug(f"NODESERVER Config: {data['shortPoll']}")
         self.shortpoll_time = data['shortPoll']
+        self.discover()
+
 
     def handleLevelChange(self, level):
         LOGGER.info('New log level: {}'.format(level))
@@ -112,7 +115,6 @@ class Controller(udi_interface.Node):
 
     def check_params(self, config):
         self.Parameters.load(config)
-        self.discover()
         # Remove all existing notices
         self.Notices.clear()
 
