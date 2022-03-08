@@ -56,16 +56,16 @@ class Controller(udi_interface.Node):
     def shortPoll(self):
         # This is where the updates to each node happen
 
+        if self.firstRun:
+            self.query()
+            self.firstRun = False
+
         for node_address in self.poly.getNodes():
             node = self.poly.getNode(node_address)
 
             if node.name != 'presence':
-                LOGGER.debug(f'Polling, node={node.name}, node.address={node.address} node.name={node.name}')
+                LOGGER.debug(f'Polling, node.address={node.address} node.name={node.name}')
                 node.update()
-
-        if self.firstRun:
-            self.query()
-            self.firstRun = False
 
     def longPoll(self):
         # Not used
@@ -280,7 +280,7 @@ class NetworkNode(udi_interface.Node):
 
     def update(self):
         if self.scan:
-            #onnet = PingHelper(ip=self.ip, timeout=self.primary.shortpoll_time)
+            # onnet = PingHelper(ip=self.ip, timeout=self.primary.shortpoll_time)
             onnet = PingHelper(ip=self.ip, timeout=15)
             result = onnet.ping()
             LOGGER.debug(f'Ping response {result}')
