@@ -47,11 +47,12 @@ class Controller(udi_interface.Node):
         self.query()
         self.setDriver('ST', 1)
 
+        self.poll('shortPoll')
+
     def poll(self, polltype):
 
         if not self.configured:
             return
-        LOGGER.debug('In shortpoll')
         if 'shortPoll' in polltype:
             self.short_Poll()
 
