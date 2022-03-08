@@ -256,12 +256,12 @@ class PingHelper(object):
         try:
             LOGGER.debug(f'Trying {self.ip} with timeout {self.timeout}')
             response = os.system("ping -c 1 -W " + str(self.timeout - 1) + " " + self.ip)
-            LOGGER.debug(f'Ping response {response}')
             if response == 0:
                 return response
             else:
                 return None
-        except:
+        except Exception as e:
+            LOGGER.debug(f'Error in Ping {e}')
             # Capture any exception
             return None
 
@@ -282,6 +282,8 @@ class NetworkNode(udi_interface.Node):
             #onnet = PingHelper(ip=self.ip, timeout=self.primary.shortpoll_time)
             onnet = PingHelper(ip=self.ip, timeout=15)
             result = onnet.ping()
+            LOGGER.debug(f'Ping response {result}')
+
             if result is not None:
                 LOGGER.debug('Network ' + self.ip + ': On Network')
                 self.setOnNetwork(5)
