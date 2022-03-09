@@ -10,6 +10,7 @@
     "loglevel": "WARNING",
     "shortPoll": "30",
     "longPoll": "60",
+    "profile_version": "3.0.0",
     "credits": [
         {
             "title": "Presence-Poly: a RPi bluetooth and network presence monitoring server",
