@@ -1,2 +1,2 @@
-udi-interface>=3.0.38
+udi-interface>=3.0.51
 pyblue~=2019.4.2
