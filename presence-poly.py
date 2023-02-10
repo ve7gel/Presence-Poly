@@ -10,7 +10,7 @@ Version = '3.0.0'
 if __name__ == "__main__":
     try:
         polyglot = udi_interface.Interface([])
-        polyglot.start(Version)
+        polyglot.start()
         control = presence_ctl.Controller(polyglot, 'controller', 'controller', 'Presence')
         polyglot.runForever()
 
