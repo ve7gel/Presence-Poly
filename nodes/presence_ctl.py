@@ -50,7 +50,7 @@ class Controller(udi_interface.Node):
         for node_address in self.poly.getNodes():
             node = self.poly.getNode(node_address)
 
-            if node.name != 'presence':
+            if node.name != 'Presence':
                 LOGGER.debug(f'Polling, node.address={node.address} node.name={node.name}')
                 node.update()
 
