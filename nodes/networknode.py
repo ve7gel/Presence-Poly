@@ -37,6 +37,7 @@ class NetworkNode(udi_interface.Node):
 
     def start(self):
         self.setOn('DON')
+        LOGGER.debug(f'Started {self.ip}')
 
     def update(self):
         if self.scan:
