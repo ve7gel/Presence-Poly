@@ -75,13 +75,13 @@ class Controller(udi_interface.Node):
         # Discover nodes and add them by type
         LOGGER.debug(f'Parameters: {self.Parameters}')
         for key, val in self.Parameters.items():
-            LOGGER.debug(key + " => " + val)
+            LOGGER.debug(key + " => " + val + val.find("."))
             if val.find(':') != -1:
                 blueid = val.replace(':', '').lower()
                 # self.poly.addNode(BluetoothNode(self, self.address, blueid, key))
             elif val.find('.') != -1:
-                LOGGER.debug(f'Adding node: {netip}: {key} - {val}')
                 netip = val.replace('.', '')
+                LOGGER.debug(f'Adding node: {netip}: {key} - {val}')
                 self.poly.addNode(NetworkNode(self.poly, self.address, netip, val, key))
                 LOGGER.debug(f'Added node {netip} {val} {key}')
 
