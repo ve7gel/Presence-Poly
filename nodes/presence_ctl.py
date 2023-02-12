@@ -80,6 +80,7 @@ class Controller(udi_interface.Node):
                 blueid = val.replace(':', '').lower()
                 # self.poly.addNode(BluetoothNode(self, self.address, blueid, key))
             elif val.find('.') != -1:
+                LOGGER.debug(f'Adding node: {netip}: {key} - {val}')
                 netip = val.replace('.', '')
                 self.poly.addNode(NetworkNode(self.poly, self.address, netip, val, key))
                 LOGGER.debug(f'Added node {netip} {val} {key}')
