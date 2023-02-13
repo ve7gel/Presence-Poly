@@ -75,7 +75,7 @@ class Controller(udi_interface.Node):
         # Discover nodes and add them by type
         LOGGER.debug(f'Parameters: {self.Parameters}')
         for key, val in self.Parameters.items():
-            LOGGER.debug(key + " => " + val + val.find("."))
+            LOGGER.debug(key + " => " + val + str(val.find(".")))
             if val.find(':') != -1:
                 blueid = val.replace(':', '').lower()
                 # self.poly.addNode(BluetoothNode(self, self.address, blueid, key))
